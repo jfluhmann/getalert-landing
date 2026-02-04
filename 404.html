@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found - Rural Alert</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-on-amber: #0a0f1a;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { -webkit-font-smoothing: antialiased; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .notfound {
+      text-align: center;
+      max-width: 480px;
+    }
+
+    .notfound__code {
+      font-family: var(--font-display);
+      font-size: 6rem;
+      color: var(--color-amber);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      opacity: 0.6;
+    }
+
+    .notfound__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .notfound__text {
+      color: var(--color-text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
+
+    .notfound__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 150ms ease;
+    }
+
+    .notfound__link:hover {
+      background: var(--color-amber-bright);
+    }
+  </style>
+</head>
+<body>
+  <div class="notfound">
+    <div class="notfound__code">404</div>
+    <h1 class="notfound__title">Page not found</h1>
+    <p class="notfound__text">The page you're looking for doesn't exist or has been moved.</p>
+    <a href="/" class="notfound__link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+      Back to Rural Alert
+    </a>
+  </div>
+</body>
+</html>

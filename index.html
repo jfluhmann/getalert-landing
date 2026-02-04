@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rural Alert - Emergency Notifications for Rural Communities</title>
+  <meta name="description" content="Affordable emergency notification system for rural communities. SMS, voice calls, and web alerts that work when the internet doesn't. Starting at $50/month.">
+  <meta name="keywords" content="emergency notification, rural communities, emergency alert system, SMS alerts, voice alerts, affordable emergency system">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Rural Alert - Emergency Notifications That Reach Everyone">
+  <meta property="og:description" content="Affordable emergency alerts for rural communities. SMS, voice, and web — works when the internet doesn't.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/assets/og-image.svg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       CSS CUSTOM PROPERTIES
+       ============================================ */
+    :root {
+      /* Core palette - deep navy + amber emergency */
+      --color-bg: #0a0f1a;
+      --color-bg-elevated: #111827;
+      --color-bg-card: #1a2235;
+      --color-bg-card-hover: #1f2a40;
+      --color-surface: #243049;
+
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-amber-dim: #d97706;
+      --color-amber-glow: rgba(245, 158, 11, 0.15);
+      --color-amber-glow-strong: rgba(245, 158, 11, 0.25);
+
+      --color-red: #ef4444;
+      --color-red-dim: #dc2626;
+      --color-green: #22c55e;
+      --color-blue: #3b82f6;
+
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-dim: #64748b;
+      --color-text-on-amber: #0a0f1a;
+
+      --color-border: #1e293b;
+      --color-border-subtle: rgba(255, 255, 255, 0.06);
+
+      /* Typography */
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+
+      /* Spacing */
+      --space-xs: 0.25rem;
+      --space-sm: 0.5rem;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --space-4xl: 6rem;
+      --space-5xl: 8rem;
+
+      /* Sizing */
+      --max-width: 1140px;
+      --max-width-narrow: 720px;
+
+      /* Effects */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3), 0 4px 20px rgba(0, 0, 0, 0.2);
+      --shadow-glow: 0 0 40px rgba(245, 158, 11, 0.08);
+      --transition-fast: 150ms ease;
+      --transition-base: 250ms ease;
+      --transition-slow: 400ms ease;
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--color-amber);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-amber-bright);
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* ============================================
+       LAYOUT UTILITIES
+       ============================================ */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .container--narrow {
+      max-width: var(--max-width-narrow);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) 0;
+      transition: background var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .nav--scrolled {
+      background: rgba(10, 15, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--color-border);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo-icon {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 0.5rem 1.25rem;
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.875rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast);
+      text-decoration: none;
+    }
+
+    .nav__cta:hover {
+      background: var(--color-amber-bright);
+      color: var(--color-text-on-amber);
+      transform: translateY(-1px);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: var(--space-5xl) 0 var(--space-4xl);
+      overflow: hidden;
+    }
+
+    .hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Topographic-style background pattern */
+    .hero__bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 40%, rgba(245, 158, 11, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 30%, rgba(59, 130, 246, 0.04) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 50% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 50%);
+    }
+
+    /* Grain overlay */
+    .hero__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+      background-size: 256px;
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 0.375rem 1rem;
+      background: var(--color-amber-glow);
+      border: 1px solid rgba(245, 158, 11, 0.2);
+      border-radius: 100px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-amber);
+      margin-bottom: var(--space-xl);
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .hero__badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-amber);
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.75rem, 6vw, 4.5rem);
+      line-height: 1.05;
+      font-weight: 400;
+      color: var(--color-text);
+      margin-bottom: var(--space-xl);
+      letter-spacing: -0.02em;
+      animation: fadeInUp 0.6s ease 0.1s both;
+    }
+
+    .hero__title em {
+      font-style: italic;
+      color: var(--color-amber);
+    }
+
+    .hero__subtitle {
+      font-size: 1.1875rem;
+      line-height: 1.65;
+      color: var(--color-text-secondary);
+      max-width: 580px;
+      margin-bottom: var(--space-2xl);
+      animation: fadeInUp 0.6s ease 0.2s both;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+      animation: fadeInUp 0.6s ease 0.3s both;
+    }
+
+    .hero__stats {
+      display: flex;
+      gap: var(--space-3xl);
+      margin-top: var(--space-4xl);
+      padding-top: var(--space-2xl);
+      border-top: 1px solid var(--color-border);
+      animation: fadeInUp 0.6s ease 0.4s both;
+    }
+
+    .hero__stat-value {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      color: var(--color-text);
+      line-height: 1;
+      margin-bottom: var(--space-xs);
+    }
+
+    .hero__stat-label {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ============================================
+       ALERT DEMO STRIP
+       ============================================ */
+    .alert-strip {
+      background: var(--color-bg-elevated);
+      border-top: 1px solid var(--color-border);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-lg) 0;
+      overflow: hidden;
+    }
+
+    .alert-strip__track {
+      display: flex;
+      gap: var(--space-xl);
+      animation: scroll-left 40s linear infinite;
+      width: max-content;
+    }
+
+    .alert-strip__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+      flex-shrink: 0;
+    }
+
+    .alert-strip__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .alert-strip__dot--critical { background: var(--color-red); box-shadow: 0 0 8px rgba(239, 68, 68, 0.4); }
+    .alert-strip__dot--warning { background: var(--color-amber); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+    .alert-strip__dot--info { background: var(--color-blue); box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
+
+    /* ============================================
+       BUTTONS
+       ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      padding: 0.875rem 1.75rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      line-height: 1;
+    }
+
+    .btn--primary {
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-amber-bright);
+      color: var(--color-text-on-amber);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(245, 158, 11, 0.25);
+    }
+
+    .btn--ghost {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn--ghost:hover {
+      border-color: var(--color-text-dim);
+      color: var(--color-text);
+    }
+
+    .btn__icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* ============================================
+       SECTION STYLING
+       ============================================ */
+    .section {
+      padding: var(--space-5xl) 0;
+    }
+
+    .section--alt {
+      background: var(--color-bg-elevated);
+    }
+
+    .section__label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-amber);
+      margin-bottom: var(--space-lg);
+    }
+
+    .section__label::before {
+      content: '';
+      display: block;
+      width: 16px;
+      height: 1px;
+      background: var(--color-amber);
+    }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+      font-weight: 400;
+      margin-bottom: var(--space-lg);
+      letter-spacing: -0.01em;
+    }
+
+    .section__subtitle {
+      font-size: 1.0625rem;
+      color: var(--color-text-secondary);
+      max-width: 560px;
+      line-height: 1.65;
+      margin-bottom: var(--space-3xl);
+    }
+
+    /* ============================================
+       PROBLEM SECTION
+       ============================================ */
+    .problem__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .problem__card {
+      padding: var(--space-xl);
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: border-color var(--transition-base), background var(--transition-base);
+    }
+
+    .problem__card:hover {
+      border-color: rgba(239, 68, 68, 0.3);
+      background: var(--color-bg-card-hover);
+    }
+
+    .problem__card-icon {
+      font-size: 1.5rem;
+      margin-bottom: var(--space-md);
+      line-height: 1;
+    }
+
+    .problem__card-title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .problem__card-text {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       HOW IT WORKS
+       ============================================ */
+    .channels {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .channel {
+      position: relative;
+      padding: var(--space-2xl) var(--space-xl);
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      text-align: center;
+      transition: all var(--transition-base);
+    }
+
+    .channel:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+      box-shadow: var(--shadow-glow);
+      transform: translateY(-2px);
+    }
+
+    .channel__number {
+      position: absolute;
+      top: var(--space-lg);
+      left: var(--space-lg);
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-dim);
+      font-weight: 500;
+    }
+
+    .channel__icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-amber-glow);
+      border-radius: var(--radius-md);
+    }
+
+    .channel__icon svg {
+      width: 28px;
+      height: 28px;
+      color: var(--color-amber);
+    }
+
+    .channel__title {
+      font-weight: 600;
+      font-size: 1.125rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .channel__desc {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    .channel__tag {
+      display: inline-block;
+      margin-top: var(--space-lg);
+      padding: 0.25rem 0.75rem;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      color: var(--color-amber);
+      background: var(--color-amber-glow);
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* ============================================
+       LIVE DEMO MOCKUP
+       ============================================ */
+    .demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    .demo__text {
+      padding-top: var(--space-xl);
+    }
+
+    .demo__features {
+      list-style: none;
+      margin-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .demo__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-md);
+    }
+
+    .demo__feature-check {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--color-green);
+    }
+
+    .demo__feature-text {
+      font-size: 0.9375rem;
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    .demo__feature-text strong {
+      color: var(--color-text);
+    }
+
+    .demo__mockup {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+    }
+
+    .demo__mockup-bar {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .demo__mockup-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-text-dim);
+      opacity: 0.4;
+    }
+
+    .demo__mockup-url {
+      margin-left: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+    }
+
+    .demo__mockup-content {
+      padding: var(--space-xl);
+    }
+
+    .demo__alert {
+      padding: var(--space-lg);
+      border-radius: var(--radius-sm);
+      margin-bottom: var(--space-md);
+      border-left: 3px solid;
+    }
+
+    .demo__alert--critical {
+      background: rgba(239, 68, 68, 0.08);
+      border-color: var(--color-red);
+    }
+
+    .demo__alert--warning {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: var(--color-amber);
+    }
+
+    .demo__alert--info {
+      background: rgba(59, 130, 246, 0.08);
+      border-color: var(--color-blue);
+    }
+
+    .demo__alert-severity {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-xs);
+    }
+
+    .demo__alert--critical .demo__alert-severity { color: var(--color-red); }
+    .demo__alert--warning .demo__alert-severity { color: var(--color-amber); }
+    .demo__alert--info .demo__alert-severity { color: var(--color-blue); }
+
+    .demo__alert-title {
+      font-weight: 600;
+      font-size: 0.9375rem;
+      margin-bottom: var(--space-xs);
+    }
+
+    .demo__alert-body {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    .demo__alert-time {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-dim);
+      margin-top: var(--space-sm);
+    }
+
+    /* ============================================
+       COMPARISON TABLE
+       ============================================ */
+    .comparison {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .comparison__table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9375rem;
+      min-width: 640px;
+    }
+
+    .comparison__table th {
+      text-align: left;
+      padding: var(--space-md) var(--space-lg);
+      font-weight: 500;
+      color: var(--color-text-dim);
+      font-size: 0.8125rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .comparison__table td {
+      padding: var(--space-md) var(--space-lg);
+      border-bottom: 1px solid var(--color-border-subtle);
+      color: var(--color-text-secondary);
+    }
+
+    .comparison__table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .comparison__table .highlight-col {
+      background: var(--color-amber-glow);
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .comparison__table .highlight-col-header {
+      background: var(--color-amber-glow-strong);
+      color: var(--color-amber);
+      font-weight: 700;
+    }
+
+    .comparison__table .row-label {
+      color: var(--color-text);
+      font-weight: 500;
+    }
+
+    .comparison__check {
+      color: var(--color-green);
+      font-weight: 700;
+    }
+
+    .comparison__x {
+      color: var(--color-red-dim);
+      opacity: 0.6;
+    }
+
+    /* ============================================
+       USE CASES
+       ============================================ */
+    .usecases__grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .usecase {
+      padding: var(--space-xl);
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition-base);
+    }
+
+    .usecase:hover {
+      border-color: var(--color-amber-glow-strong);
+      transform: translateY(-2px);
+    }
+
+    .usecase__icon {
+      font-size: 1.75rem;
+      margin-bottom: var(--space-md);
+      line-height: 1;
+    }
+
+    .usecase__title {
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+    }
+
+    .usecase__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       AUDIENCE / WHO IT'S FOR
+       ============================================ */
+    .audience__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-lg);
+    }
+
+    .audience__item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      padding: var(--space-xl);
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+    }
+
+    .audience__icon {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-amber-glow);
+      border-radius: var(--radius-sm);
+      font-size: 1.25rem;
+    }
+
+    .audience__title {
+      font-weight: 600;
+      margin-bottom: var(--space-xs);
+    }
+
+    .audience__desc {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    .audience__price {
+      display: inline-block;
+      margin-top: var(--space-sm);
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-amber-dim);
+    }
+
+    /* ============================================
+       ORIGIN STORY
+       ============================================ */
+    .origin__content {
+      max-width: var(--max-width-narrow);
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .origin__quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: clamp(1.375rem, 3vw, 1.75rem);
+      line-height: 1.5;
+      color: var(--color-text);
+      margin-bottom: var(--space-xl);
+      position: relative;
+    }
+
+    .origin__quote::before {
+      content: '\201C';
+      position: absolute;
+      top: -0.4em;
+      left: -0.5em;
+      font-size: 4rem;
+      color: var(--color-amber);
+      opacity: 0.3;
+      font-family: var(--font-display);
+      line-height: 1;
+    }
+
+    .origin__body {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ============================================
+       CTA / LEAD CAPTURE FORM
+       ============================================ */
+    .cta-section {
+      position: relative;
+      padding: var(--space-5xl) 0;
+      overflow: hidden;
+    }
+
+    .cta-section__bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 50%, rgba(245, 158, 11, 0.06) 0%, transparent 60%);
+    }
+
+    .cta__content {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .cta__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 2.75rem);
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
+
+    .cta__subtitle {
+      color: var(--color-text-secondary);
+      font-size: 1.0625rem;
+      margin-bottom: var(--space-2xl);
+      line-height: 1.6;
+    }
+
+    .cta__form {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl);
+      text-align: left;
+    }
+
+    .form__row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+    }
+
+    .form__group {
+      margin-bottom: var(--space-lg);
+    }
+
+    .form__label {
+      display: block;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .form__input,
+    .form__select {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      color: var(--color-text);
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      transition: border-color var(--transition-fast);
+      appearance: none;
+    }
+
+    .form__input::placeholder {
+      color: var(--color-text-dim);
+    }
+
+    .form__input:focus,
+    .form__select:focus {
+      outline: none;
+      border-color: var(--color-amber);
+      box-shadow: 0 0 0 3px var(--color-amber-glow);
+    }
+
+    .form__select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2364748b' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      padding-right: 2.5rem;
+    }
+
+    .form__submit {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all var(--transition-fast);
+    }
+
+    .form__submit:hover {
+      background: var(--color-amber-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(245, 158, 11, 0.25);
+    }
+
+    .form__note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+      margin-top: var(--space-md);
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .footer {
+      padding: var(--space-2xl) 0;
+      border-top: 1px solid var(--color-border);
+    }
+
+    .footer__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    .footer__links {
+      display: flex;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .footer__links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+      transition: color var(--transition-fast);
+    }
+
+    .footer__links a:hover {
+      color: var(--color-text-secondary);
+    }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* Scroll-triggered fade in */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Staggered children */
+    .stagger-children .fade-in:nth-child(1) { transition-delay: 0s; }
+    .stagger-children .fade-in:nth-child(2) { transition-delay: 0.08s; }
+    .stagger-children .fade-in:nth-child(3) { transition-delay: 0.16s; }
+    .stagger-children .fade-in:nth-child(4) { transition-delay: 0.24s; }
+    .stagger-children .fade-in:nth-child(5) { transition-delay: 0.32s; }
+    .stagger-children .fade-in:nth-child(6) { transition-delay: 0.40s; }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 900px) {
+      .channels {
+        grid-template-columns: 1fr;
+      }
+
+      .demo {
+        grid-template-columns: 1fr;
+      }
+
+      .problem__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .usecases__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .audience__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero__stats {
+        flex-direction: column;
+        gap: var(--space-xl);
+      }
+
+      .form__row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 var(--space-lg);
+      }
+
+      .section {
+        padding: var(--space-3xl) 0;
+      }
+
+      .footer__inner {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
+
+      .footer__links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .cta__form {
+        padding: var(--space-xl);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+       NAVIGATION
+       ============================================ -->
+  <nav class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#" class="nav__logo">
+        <svg class="nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#f59e0b"/>
+          <path d="M16 6L26 24H6L16 6Z" fill="#0a0f1a" stroke="#0a0f1a" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="16" y1="12" x2="16" y2="18" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="21" r="1.25" fill="#f59e0b"/>
+        </svg>
+        Rural Alert
+      </a>
+      <a href="#get-started" class="nav__cta">Get Early Access</a>
+    </div>
+  </nav>
+
+  <!-- ============================================
+       HERO
+       ============================================ -->
+  <section class="hero" id="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="container hero__content">
+      <div class="hero__badge">
+        <span class="hero__badge-dot" aria-hidden="true"></span>
+        Now accepting early access requests
+      </div>
+      <h1 class="hero__title">
+        Emergency alerts that reach <em>everyone</em> &mdash; even without internet
+      </h1>
+      <p class="hero__subtitle">
+        An affordable notification system built for rural communities. SMS, voice calls, and a public call-in line &mdash; because not everyone has a smartphone, and emergencies don't wait.
+      </p>
+      <div class="hero__actions">
+        <a href="#get-started" class="btn btn--primary">
+          Request Early Access
+          <svg class="btn__icon" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a href="#how-it-works" class="btn btn--ghost">
+          See How It Works
+        </a>
+      </div>
+      <div class="hero__stats">
+        <div>
+          <div class="hero__stat-value">$50</div>
+          <div class="hero__stat-label">Starting / month</div>
+        </div>
+        <div>
+          <div class="hero__stat-value">15 min</div>
+          <div class="hero__stat-label">Setup time</div>
+        </div>
+        <div>
+          <div class="hero__stat-value">3</div>
+          <div class="hero__stat-label">Alert channels</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       SCROLLING ALERT STRIP
+       ============================================ -->
+  <div class="alert-strip" aria-hidden="true">
+    <div class="alert-strip__track">
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--critical"></span> WILDFIRE EVACUATION &mdash; Zone A mandatory evacuation</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--warning"></span> WINTER STORM WARNING &mdash; 1/2" ice expected Thursday</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--info"></span> BOIL WATER NOTICE &mdash; Main line repair underway</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--critical"></span> TORNADO WARNING &mdash; Take shelter immediately</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--warning"></span> FLASH FLOOD WARNING &mdash; Avoid low water crossings</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--info"></span> ROAD CLOSURE &mdash; FM 2134 closed for maintenance</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--critical"></span> WILDFIRE EVACUATION &mdash; Zone A mandatory evacuation</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--warning"></span> WINTER STORM WARNING &mdash; 1/2" ice expected Thursday</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--info"></span> BOIL WATER NOTICE &mdash; Main line repair underway</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--critical"></span> TORNADO WARNING &mdash; Take shelter immediately</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--warning"></span> FLASH FLOOD WARNING &mdash; Avoid low water crossings</span>
+      <span class="alert-strip__item"><span class="alert-strip__dot alert-strip__dot--info"></span> ROAD CLOSURE &mdash; FM 2134 closed for maintenance</span>
+    </div>
+  </div>
+
+  <!-- ============================================
+       THE PROBLEM
+       ============================================ -->
+  <section class="section" id="problem">
+    <div class="container">
+      <span class="section__label fade-in">The Problem</span>
+      <h2 class="section__title fade-in">Rural communities are left behind</h2>
+      <p class="section__subtitle fade-in">
+        Enterprise alert systems cost thousands. Meanwhile, rural residents rely on Facebook groups, phone trees, and word-of-mouth during emergencies.
+      </p>
+      <div class="problem__grid stagger-children">
+        <div class="problem__card fade-in">
+          <div class="problem__card-icon" aria-hidden="true">&#xd7;</div>
+          <h3 class="problem__card-title">Enterprise pricing, small-town budgets</h3>
+          <p class="problem__card-text">AlertMedia, Everbridge, and Rave start at $5,000&ndash;$150,000/year. Most rural counties spend less than that on their entire emergency management office.</p>
+        </div>
+        <div class="problem__card fade-in">
+          <div class="problem__card-icon" aria-hidden="true">&#xd7;</div>
+          <h3 class="problem__card-title">Not everyone has a smartphone</h3>
+          <p class="problem__card-text">Older residents, farmworkers, and those in low-connectivity areas can't rely on apps and push notifications. They need a phone call or text.</p>
+        </div>
+        <div class="problem__card fade-in">
+          <div class="problem__card-icon" aria-hidden="true">&#xd7;</div>
+          <h3 class="problem__card-title">Scattered, unreliable information</h3>
+          <p class="problem__card-text">During the 2026 ice storm, information was fragmented across Facebook, local radio, and word-of-mouth. There was no single source of truth.</p>
+        </div>
+        <div class="problem__card fade-in">
+          <div class="problem__card-icon" aria-hidden="true">&#xd7;</div>
+          <h3 class="problem__card-title">911 systems overloaded</h3>
+          <p class="problem__card-text">When people can't find information, they call 911. A simple notification system reduces non-emergency 911 volume during crises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       HOW IT WORKS
+       ============================================ -->
+  <section class="section section--alt" id="how-it-works">
+    <div class="container">
+      <span class="section__label fade-in">How It Works</span>
+      <h2 class="section__title fade-in">Three channels, one mission: reach everyone</h2>
+      <p class="section__subtitle fade-in">
+        Rural Alert delivers alerts through SMS, voice, and web &mdash; so every resident gets the message, regardless of their technology.
+      </p>
+      <div class="channels stagger-children">
+        <div class="channel fade-in">
+          <span class="channel__number">01</span>
+          <div class="channel__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <h3 class="channel__title">SMS Alerts</h3>
+          <p class="channel__desc">Residents text SUBSCRIBE to your number. When an emergency hits, everyone gets an instant text message &mdash; no app required.</p>
+          <span class="channel__tag">Works on any phone</span>
+        </div>
+        <div class="channel fade-in">
+          <span class="channel__number">02</span>
+          <div class="channel__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </div>
+          <h3 class="channel__title">Call-In Line</h3>
+          <p class="channel__desc">A dedicated phone number anyone can call to hear the latest alert read aloud. Perfect during power outages or for those without data service.</p>
+          <span class="channel__tag">No competitor offers this</span>
+        </div>
+        <div class="channel fade-in">
+          <span class="channel__number">03</span>
+          <div class="channel__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+          </div>
+          <h3 class="channel__title">Public Web Page</h3>
+          <p class="channel__desc">An auto-refreshing public page displays current alerts with severity levels. No login needed &mdash; share the link with your entire community.</p>
+          <span class="channel__tag">Auto-refreshing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       LIVE DEMO MOCKUP
+       ============================================ -->
+  <section class="section" id="features">
+    <div class="container">
+      <div class="demo">
+        <div class="demo__text">
+          <span class="section__label fade-in">Built for Rural Reality</span>
+          <h2 class="section__title fade-in">Simple enough for volunteers. Reliable enough for emergencies.</h2>
+          <ul class="demo__features">
+            <li class="demo__feature fade-in">
+              <svg class="demo__feature-check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="demo__feature-text"><strong>Set up in 15 minutes.</strong> No IT department, no integrations, no training budget required.</span>
+            </li>
+            <li class="demo__feature fade-in">
+              <svg class="demo__feature-check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="demo__feature-text"><strong>Severity levels.</strong> Info, Warning, and Critical &mdash; with distinct visual and audio cues for each.</span>
+            </li>
+            <li class="demo__feature fade-in">
+              <svg class="demo__feature-check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="demo__feature-text"><strong>SMS works when internet fails.</strong> Text messages often get through when data connections don't.</span>
+            </li>
+            <li class="demo__feature fade-in">
+              <svg class="demo__feature-check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="demo__feature-text"><strong>Transparent pricing.</strong> No per-message overages. No surprise annual increases. Budget with confidence.</span>
+            </li>
+            <li class="demo__feature fade-in">
+              <svg class="demo__feature-check" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+              <span class="demo__feature-text"><strong>Broadcast to all subscribers.</strong> One click sends your alert to every registered resident via SMS.</span>
+            </li>
+          </ul>
+        </div>
+        <div class="demo__mockup fade-in">
+          <div class="demo__mockup-bar">
+            <span class="demo__mockup-dot"></span>
+            <span class="demo__mockup-dot"></span>
+            <span class="demo__mockup-dot"></span>
+            <span class="demo__mockup-url">ruralalert.com/coke-county</span>
+          </div>
+          <div class="demo__mockup-content">
+            <div class="demo__alert demo__alert--critical">
+              <div class="demo__alert-severity">Critical</div>
+              <div class="demo__alert-title">Wildfire Evacuation &mdash; Zones A &amp; B</div>
+              <div class="demo__alert-body">MANDATORY evacuation for Zones A and B. Fire spreading east toward FM 2134. Exit via Highway 87 North. Shelter open at High School gymnasium.</div>
+              <div class="demo__alert-time">Today at 3:45 PM</div>
+            </div>
+            <div class="demo__alert demo__alert--warning">
+              <div class="demo__alert-severity">Warning</div>
+              <div class="demo__alert-title">Power Outage &mdash; North County</div>
+              <div class="demo__alert-body">Approximately 1,200 customers affected. Crews working to restore. Estimated restoration: 2-4 hours.</div>
+              <div class="demo__alert-time">Today at 2:15 PM</div>
+            </div>
+            <div class="demo__alert demo__alert--info">
+              <div class="demo__alert-severity">Info</div>
+              <div class="demo__alert-title">Burn Ban in Effect</div>
+              <div class="demo__alert-body">Due to dry conditions, outdoor burning is prohibited until further notice. Report fires: 911</div>
+              <div class="demo__alert-time">Yesterday at 9:00 AM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       COMPARISON TABLE
+       ============================================ -->
+  <section class="section section--alt" id="pricing">
+    <div class="container">
+      <span class="section__label fade-in">Pricing Comparison</span>
+      <h2 class="section__title fade-in">Enterprise features at a fraction of the cost</h2>
+      <p class="section__subtitle fade-in">
+        You shouldn't need a six-figure budget to keep your community safe.
+      </p>
+      <div class="comparison fade-in">
+        <table class="comparison__table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Everbridge</th>
+              <th>AlertMedia</th>
+              <th>CodeRED</th>
+              <th class="highlight-col-header">Rural Alert</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Annual Cost</td>
+              <td>$25,000+</td>
+              <td>$10,000+</td>
+              <td>$5,000+</td>
+              <td class="highlight-col">$600 &ndash; $2,400</td>
+            </tr>
+            <tr>
+              <td class="row-label">SMS Alerts</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="highlight-col comparison__check">&#10003;</td>
+            </tr>
+            <tr>
+              <td class="row-label">Voice Calls</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="highlight-col comparison__check">&#10003;</td>
+            </tr>
+            <tr>
+              <td class="row-label">Call-In Line</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="highlight-col comparison__check">&#10003;</td>
+            </tr>
+            <tr>
+              <td class="row-label">Public Web Page</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="highlight-col comparison__check">&#10003;</td>
+            </tr>
+            <tr>
+              <td class="row-label">Setup Time</td>
+              <td>Weeks</td>
+              <td>Days</td>
+              <td>Days</td>
+              <td class="highlight-col">15 minutes</td>
+            </tr>
+            <tr>
+              <td class="row-label">IT Staff Required</td>
+              <td class="comparison__check">&#10003;</td>
+              <td class="comparison__check">&#10003;</td>
+              <td>Some</td>
+              <td class="highlight-col comparison__x">No</td>
+            </tr>
+            <tr>
+              <td class="row-label">Contract</td>
+              <td>Annual</td>
+              <td>Annual</td>
+              <td>Annual</td>
+              <td class="highlight-col">Month-to-month</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       USE CASES
+       ============================================ -->
+  <section class="section" id="use-cases">
+    <div class="container">
+      <span class="section__label fade-in">Use Cases</span>
+      <h2 class="section__title fade-in">From wildfires to water notices</h2>
+      <p class="section__subtitle fade-in">
+        Rural Alert handles the emergencies rural communities actually face &mdash; plus the everyday announcements that keep your subscriber base active.
+      </p>
+      <div class="usecases__grid stagger-children">
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f525;</div>
+          <h3 class="usecase__title">Wildfire Evacuation</h3>
+          <p class="usecase__desc">Zone-by-zone evacuation orders, shelter locations, and road closures updated in real time as fire lines shift.</p>
+        </div>
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f328;&#xfe0f;</div>
+          <h3 class="usecase__title">Winter Storm Alerts</h3>
+          <p class="usecase__desc">Pre-storm preparation notices, power outage updates, warming center locations, and road conditions.</p>
+        </div>
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f32a;&#xfe0f;</div>
+          <h3 class="usecase__title">Tornado Warning</h3>
+          <p class="usecase__desc">Instant SMS blast reaches residents miles from the nearest siren &mdash; including those sleeping at 3 AM.</p>
+        </div>
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f4a7;</div>
+          <h3 class="usecase__title">Boil Water Notice</h3>
+          <p class="usecase__desc">Instant notification to every subscriber. No more door-to-door visits or posted signs nobody sees.</p>
+        </div>
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f6a8;</div>
+          <h3 class="usecase__title">Missing Person</h3>
+          <p class="usecase__desc">Get the entire community looking within minutes. Description, vehicle, and contact info broadcast instantly.</p>
+        </div>
+        <div class="usecase fade-in">
+          <div class="usecase__icon" aria-hidden="true">&#x1f3db;&#xfe0f;</div>
+          <h3 class="usecase__title">Community Updates</h3>
+          <p class="usecase__desc">Road closures, burn bans, school delays, and county events. Keep your subscribers engaged between emergencies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       WHO IT'S FOR
+       ============================================ -->
+  <section class="section section--alt" id="who-its-for">
+    <div class="container">
+      <span class="section__label fade-in">Who It's For</span>
+      <h2 class="section__title fade-in">Built for the people who keep rural America safe</h2>
+      <p class="section__subtitle fade-in">
+        From county offices to volunteer fire departments, Rural Alert fits the budget and workflow of organizations that serve small communities.
+      </p>
+      <div class="audience__grid stagger-children">
+        <div class="audience__item fade-in">
+          <div class="audience__icon" aria-hidden="true">&#x1f3db;&#xfe0f;</div>
+          <div>
+            <h3 class="audience__title">County Emergency Management</h3>
+            <p class="audience__desc">Give your residents a centralized source of truth during emergencies. Reduce non-emergency 911 calls and scattered Facebook posts.</p>
+            <span class="audience__price">Starting at $100/mo</span>
+          </div>
+        </div>
+        <div class="audience__item fade-in">
+          <div class="audience__icon" aria-hidden="true">&#x1f692;</div>
+          <div>
+            <h3 class="audience__title">Volunteer Fire Departments</h3>
+            <p class="audience__desc">Keep your community informed about active fires, burn bans, and fundraising events. Simple enough for any volunteer to operate.</p>
+            <span class="audience__price">Starting at $50/mo</span>
+          </div>
+        </div>
+        <div class="audience__item fade-in">
+          <div class="audience__icon" aria-hidden="true">&#x1f3eb;</div>
+          <div>
+            <h3 class="audience__title">Rural School Districts</h3>
+            <p class="audience__desc">Weather closures, lockdown notifications, and early dismissals sent instantly to parents. Flat pricing regardless of student count.</p>
+            <span class="audience__price">Starting at $75/mo</span>
+          </div>
+        </div>
+        <div class="audience__item fade-in">
+          <div class="audience__icon" aria-hidden="true">&#x1f3d8;&#xfe0f;</div>
+          <div>
+            <h3 class="audience__title">Small-Town Municipalities &amp; HOAs</h3>
+            <p class="audience__desc">Boil water notices, road work, power outages, and community events. One tool for all your resident communication needs.</p>
+            <span class="audience__price">Starting at $50/mo</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       ORIGIN STORY
+       ============================================ -->
+  <section class="section" id="story">
+    <div class="container">
+      <div class="origin__content">
+        <span class="section__label fade-in" style="justify-content: center;">The Origin</span>
+        <blockquote class="origin__quote fade-in">
+          Not everyone has Facebook. Not everyone has a smartphone. But almost everyone can receive a phone call or text message, and anyone can call a phone number to hear an update.
+        </blockquote>
+        <p class="origin__body fade-in">
+          Rural Alert was born during wildfires in rural Texas, when critical information was scattered across Facebook groups &mdash; and the residents who needed it most had no way to access it. We built what those communities needed: a simple, affordable system that reaches people regardless of their technology.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       CTA / LEAD CAPTURE
+       ============================================ -->
+  <section class="cta-section section--alt" id="get-started">
+    <div class="cta-section__bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="cta__content">
+        <span class="section__label fade-in" style="justify-content: center;">Get Started</span>
+        <h2 class="cta__title fade-in">Be the first to bring Rural Alert to your community</h2>
+        <p class="cta__subtitle fade-in">
+          We're onboarding our first pilot communities now. Request early access and we'll reach out to discuss your needs.
+        </p>
+        <form
+          class="cta__form fade-in"
+          name="early-access"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          action="/success.html"
+        >
+          <!-- Honeypot for bot protection -->
+          <p class="sr-only">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
+          <input type="hidden" name="form-name" value="early-access">
+
+          <div class="form__row">
+            <div class="form__group">
+              <label class="form__label" for="first-name">First Name</label>
+              <input class="form__input" type="text" id="first-name" name="first-name" placeholder="Jane" required>
+            </div>
+            <div class="form__group">
+              <label class="form__label" for="last-name">Last Name</label>
+              <input class="form__input" type="text" id="last-name" name="last-name" placeholder="Smith" required>
+            </div>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="email">Email Address</label>
+            <input class="form__input" type="email" id="email" name="email" placeholder="jane@county.gov" required>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="organization">Organization</label>
+            <input class="form__input" type="text" id="organization" name="organization" placeholder="Coke County Emergency Management">
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="org-type">Organization Type</label>
+            <select class="form__select" id="org-type" name="org-type" required>
+              <option value="" disabled selected>Select your organization type</option>
+              <option value="county-em">County Emergency Management</option>
+              <option value="fire-dept">Fire Department</option>
+              <option value="school-district">School District</option>
+              <option value="municipality">Municipality / City Government</option>
+              <option value="hoa">HOA / Subdivision</option>
+              <option value="utility">Utility / Water District</option>
+              <option value="tribal">Tribal Government</option>
+              <option value="church">Church / Faith Organization</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="form__group">
+            <label class="form__label" for="message">How do you currently handle emergency notifications? (Optional)</label>
+            <input class="form__input" type="text" id="message" name="message" placeholder="Facebook, phone tree, word of mouth...">
+          </div>
+
+          <button type="submit" class="form__submit">Request Early Access</button>
+          <p class="form__note">No commitment required. We'll reach out within 48 hours.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="footer__copy">&copy; 2026 Rural Alert. All rights reserved.</span>
+      <ul class="footer__links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#use-cases">Use Cases</a></li>
+        <li><a href="#get-started">Get Started</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ============================================
+       JAVASCRIPT
+       ============================================ -->
+  <script>
+    // Scroll-triggered animations
+    (function () {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      document.querySelectorAll('.fade-in').forEach((el) => {
+        observer.observe(el);
+      });
+    })();
+
+    // Nav scroll effect
+    (function () {
+      const nav = document.getElementById('nav');
+      let ticking = false;
+
+      window.addEventListener('scroll', function () {
+        if (!ticking) {
+          window.requestAnimationFrame(function () {
+            if (window.scrollY > 40) {
+              nav.classList.add('nav--scrolled');
+            } else {
+              nav.classList.remove('nav--scrolled');
+            }
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    })();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

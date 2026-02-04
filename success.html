@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - Rural Alert</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-bg-card: #1a2235;
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-amber-glow: rgba(245, 158, 11, 0.15);
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-on-amber: #0a0f1a;
+      --color-border: #1e293b;
+      --color-green: #22c55e;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .success {
+      text-align: center;
+      max-width: 520px;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success__icon {
+      width: 72px;
+      height: 72px;
+      margin: 0 auto 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 197, 94, 0.12);
+      border-radius: 50%;
+    }
+
+    .success__icon svg {
+      width: 36px;
+      height: 36px;
+      color: var(--color-green);
+    }
+
+    .success__title {
+      font-family: var(--font-display);
+      font-size: 2.25rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+    }
+
+    .success__text {
+      color: var(--color-text-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      margin-bottom: 2rem;
+    }
+
+    .success__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .success__link:hover {
+      background: var(--color-amber-bright);
+      transform: translateY(-1px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="success">
+    <div class="success__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1 class="success__title">You're on the list</h1>
+    <p class="success__text">
+      Thank you for your interest in Rural Alert. We'll reach out within 48 hours to discuss how we can help your community stay informed during emergencies.
+    </p>
+    <a href="/" class="success__link">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+      Back to Rural Alert
+    </a>
+  </div>
+</body>
+</html>
