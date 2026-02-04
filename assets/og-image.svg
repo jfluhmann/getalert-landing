@@ -21,17 +21,17 @@
   </g>
 
   <!-- Title -->
-  <text x="190" y="265" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#f1f5f9">Rural Alert</text>
+  <text x="190" y="265" font-family="Georgia, serif" font-size="52" font-weight="400" fill="#f1f5f9">GetAlert</text>
 
   <!-- Subtitle -->
-  <text x="102" y="340" font-family="system-ui, sans-serif" font-size="28" fill="#94a3b8">Emergency notifications for rural communities.</text>
+  <text x="102" y="340" font-family="system-ui, sans-serif" font-size="28" fill="#94a3b8">The affordable alert system for small communities.</text>
   <text x="102" y="380" font-family="system-ui, sans-serif" font-size="28" fill="#94a3b8">SMS. Voice. Web. Works when the internet doesn't.</text>
 
   <!-- Amber accent line -->
   <rect x="102" y="420" width="80" height="3" rx="1.5" fill="#f59e0b"/>
 
   <!-- URL -->
-  <text x="102" y="470" font-family="monospace" font-size="20" fill="#64748b">ruralalert.com</text>
+  <text x="102" y="470" font-family="monospace" font-size="20" fill="#64748b">getalert.co</text>
 
   <!-- Border accent -->
   <rect x="0" y="625" width="1200" height="5" fill="#f59e0b" opacity="0.6"/>
