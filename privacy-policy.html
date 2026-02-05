@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - GetAlert</title>
+  <meta name="description" content="GetAlert Privacy Policy - Learn how we collect, use, and protect your information.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://getalert.co/privacy-policy">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-bg-elevated: #111827;
+      --color-bg-card: #1a2235;
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-dim: #64748b;
+      --color-text-on-amber: #0a0f1a;
+      --color-border: #1e293b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --max-width: 800px;
+      --radius-sm: 6px;
+      --transition-fast: 150ms ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    a {
+      color: var(--color-amber);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-amber-bright);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) 0;
+      background: rgba(10, 15, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--color-border);
+    }
+
+    .nav__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav__back {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .content {
+      padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    }
+
+    .content__header {
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .content__title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
+    }
+
+    .content__meta {
+      font-size: 0.875rem;
+      color: var(--color-text-dim);
+    }
+
+    .content__body h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .content__body h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .content__body p {
+      margin-bottom: var(--space-lg);
+      color: var(--color-text-secondary);
+    }
+
+    .content__body ul, .content__body ol {
+      margin-bottom: var(--space-lg);
+      padding-left: var(--space-xl);
+      color: var(--color-text-secondary);
+    }
+
+    .content__body li {
+      margin-bottom: 0.5rem;
+    }
+
+    .content__body strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    .footer__links {
+      margin-top: var(--space-md);
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .footer__links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 var(--space-lg);
+      }
+
+      .content__title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <svg class="nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#f59e0b"/>
+          <path d="M16 6L26 24H6L16 6Z" fill="#0a0f1a" stroke="#0a0f1a" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="16" y1="12" x2="16" y2="18" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="21" r="1.25" fill="#f59e0b"/>
+        </svg>
+        GetAlert
+      </a>
+      <a href="/" class="nav__back">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="content">
+    <div class="container">
+      <header class="content__header">
+        <h1 class="content__title">Privacy Policy</h1>
+        <p class="content__meta">Last updated: February 5, 2026</p>
+      </header>
+
+      <div class="content__body">
+        <p>GetAlert ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our emergency alert notification service.</p>
+
+        <h2>1. Information We Collect</h2>
+
+        <h3>Information You Provide</h3>
+        <p>When you subscribe to GetAlert by texting SUBSCRIBE to our phone number, we collect:</p>
+        <ul>
+          <li><strong>Phone Number:</strong> Your mobile phone number, which is required to deliver SMS alerts to you.</li>
+          <li><strong>Subscription Status:</strong> Whether you are actively subscribed or have unsubscribed from alerts.</li>
+          <li><strong>Subscription Timestamps:</strong> When you subscribed and, if applicable, when you unsubscribed.</li>
+        </ul>
+
+        <h3>Information Collected Automatically</h3>
+        <p>When we send you SMS messages, our service provider (Twilio) may collect:</p>
+        <ul>
+          <li>Message delivery status (delivered, failed, etc.)</li>
+          <li>Timestamps of message transmission</li>
+          <li>Technical identifiers necessary for message routing</li>
+        </ul>
+
+        <h3>Information We Do NOT Collect</h3>
+        <p>We do not collect:</p>
+        <ul>
+          <li>Your name, address, or other personal identifying information</li>
+          <li>Your location or GPS data</li>
+          <li>Any information from your device beyond what is necessary for SMS delivery</li>
+          <li>Your message content (other than subscription keywords like SUBSCRIBE, STOP, STATUS)</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use your phone number solely for the following purposes:</p>
+        <ul>
+          <li><strong>Delivering Emergency Alerts:</strong> Sending you time-sensitive information about emergencies, public safety notices, and community announcements from the organization you subscribed to.</li>
+          <li><strong>Managing Your Subscription:</strong> Processing your subscription requests (SUBSCRIBE), unsubscribe requests (STOP), and status inquiries (STATUS).</li>
+          <li><strong>Service Operations:</strong> Maintaining delivery logs to ensure alerts are successfully transmitted.</li>
+        </ul>
+
+        <h2>3. How We Share Your Information</h2>
+        <p>We do not sell, rent, or trade your phone number to third parties for marketing purposes. We may share your information only in the following circumstances:</p>
+        <ul>
+          <li><strong>Service Providers:</strong> We use Twilio to deliver SMS messages. Twilio processes your phone number solely to transmit messages on our behalf and is contractually obligated to protect your information.</li>
+          <li><strong>Organization Administrators:</strong> The organization you subscribed to (e.g., your county emergency management office, fire department, or school district) may have access to aggregate subscriber counts but not individual phone numbers unless required for service delivery.</li>
+          <li><strong>Legal Requirements:</strong> We may disclose your information if required by law, court order, or government request, or to protect the rights, safety, or property of GetAlert, our users, or the public.</li>
+        </ul>
+
+        <h2>4. Data Retention</h2>
+        <p>We retain your phone number and subscription data for as long as you remain subscribed. If you unsubscribe, we retain a record of your phone number and unsubscription date for up to 24 months to honor your opt-out preference and prevent accidental re-enrollment. After this period, your data is permanently deleted.</p>
+
+        <h2>5. Data Security</h2>
+        <p>We implement appropriate technical and organizational measures to protect your information, including:</p>
+        <ul>
+          <li>Encryption of data in transit and at rest</li>
+          <li>Access controls limiting who can view subscriber data</li>
+          <li>Regular security assessments of our systems</li>
+          <li>Use of reputable, security-certified service providers (Twilio, Supabase)</li>
+        </ul>
+        <p>However, no method of electronic transmission or storage is 100% secure. While we strive to protect your information, we cannot guarantee absolute security.</p>
+
+        <h2>6. Your Rights and Choices</h2>
+
+        <h3>Opt-Out</h3>
+        <p>You can stop receiving alerts at any time by texting <strong>STOP</strong> to the phone number from which you receive alerts. You will receive a confirmation message and will no longer receive alerts unless you re-subscribe.</p>
+
+        <h3>Check Subscription Status</h3>
+        <p>Text <strong>STATUS</strong> to check whether you are currently subscribed and to see information about the latest alert.</p>
+
+        <h3>Re-Subscribe</h3>
+        <p>If you previously unsubscribed, you can re-subscribe at any time by texting <strong>SUBSCRIBE</strong> to the organization's phone number.</p>
+
+        <h3>Data Access and Deletion</h3>
+        <p>To request access to or deletion of your data, contact us at <a href="mailto:privacy@getalert.co">privacy@getalert.co</a>. We will respond to your request within 30 days.</p>
+
+        <h2>7. Children's Privacy</h2>
+        <p>GetAlert is not directed to children under 13. We do not knowingly collect information from children under 13. If you believe a child under 13 has subscribed to GetAlert, please contact us and we will promptly delete their information.</p>
+
+        <h2>8. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. If we make material changes, we will notify subscribers via SMS and update the "Last updated" date at the top of this policy. Your continued use of GetAlert after any changes indicates your acceptance of the updated policy.</p>
+
+        <h2>9. Contact Us</h2>
+        <p>If you have questions about this Privacy Policy or our data practices, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:privacy@getalert.co">privacy@getalert.co</a></li>
+          <li><strong>Mail:</strong> GetAlert, Rural Capital LLC, [Address]</li>
+        </ul>
+
+        <h2>10. California Residents</h2>
+        <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA), including the right to know what personal information we collect, the right to delete your personal information, and the right to opt-out of the sale of your personal information. We do not sell personal information. To exercise your rights, contact us at <a href="mailto:privacy@getalert.co">privacy@getalert.co</a>.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="footer__copy">&copy; 2026 GetAlert. All rights reserved.</span>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>

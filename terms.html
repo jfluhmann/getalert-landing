@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions - GetAlert</title>
+  <meta name="description" content="GetAlert Terms and Conditions - Terms of service for our emergency alert notification system.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://getalert.co/terms">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-bg-elevated: #111827;
+      --color-bg-card: #1a2235;
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-dim: #64748b;
+      --color-text-on-amber: #0a0f1a;
+      --color-border: #1e293b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --max-width: 800px;
+      --radius-sm: 6px;
+      --transition-fast: 150ms ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    a {
+      color: var(--color-amber);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-amber-bright);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) 0;
+      background: rgba(10, 15, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--color-border);
+    }
+
+    .nav__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav__back {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .content {
+      padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    }
+
+    .content__header {
+      margin-bottom: var(--space-2xl);
+      padding-bottom: var(--space-xl);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .content__title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
+    }
+
+    .content__meta {
+      font-size: 0.875rem;
+      color: var(--color-text-dim);
+    }
+
+    .content__body h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: var(--space-2xl);
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .content__body h3 {
+      font-size: 1.0625rem;
+      font-weight: 600;
+      margin-top: var(--space-xl);
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .content__body p {
+      margin-bottom: var(--space-lg);
+      color: var(--color-text-secondary);
+    }
+
+    .content__body ul, .content__body ol {
+      margin-bottom: var(--space-lg);
+      padding-left: var(--space-xl);
+      color: var(--color-text-secondary);
+    }
+
+    .content__body li {
+      margin-bottom: 0.5rem;
+    }
+
+    .content__body strong {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .footer {
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+    }
+
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    .footer__links {
+      margin-top: var(--space-md);
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .footer__links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 var(--space-lg);
+      }
+
+      .content__title {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <svg class="nav__logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#f59e0b"/>
+          <path d="M16 6L26 24H6L16 6Z" fill="#0a0f1a" stroke="#0a0f1a" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="16" y1="12" x2="16" y2="18" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="16" cy="21" r="1.25" fill="#f59e0b"/>
+        </svg>
+        GetAlert
+      </a>
+      <a href="/" class="nav__back">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="content">
+    <div class="container">
+      <header class="content__header">
+        <h1 class="content__title">Terms and Conditions</h1>
+        <p class="content__meta">Last updated: February 5, 2026</p>
+      </header>
+
+      <div class="content__body">
+        <p>These Terms and Conditions ("Terms") govern your use of the GetAlert emergency notification service ("Service") operated by Rural Capital, LLC ("we," "our," or "us"). By subscribing to GetAlert, you agree to these Terms.</p>
+
+        <h2>1. Service Description</h2>
+        <p>GetAlert is an SMS-based emergency alert notification service that enables organizations (counties, fire departments, schools, municipalities, and other entities) to send time-sensitive alerts to subscribers. The Service includes:</p>
+        <ul>
+          <li>SMS text message alerts about emergencies, public safety, and community information</li>
+          <li>A call-in phone line where you can hear the latest alert</li>
+          <li>A public web page displaying current alerts</li>
+        </ul>
+
+        <h2>2. Subscription and Opt-In</h2>
+        <p>To subscribe to GetAlert, you must text <strong>SUBSCRIBE</strong> (or START, JOIN, ALERTS, or YES) to the designated phone number for the organization whose alerts you wish to receive. By subscribing, you:</p>
+        <ul>
+          <li>Consent to receive SMS text messages from GetAlert on behalf of the subscribing organization</li>
+          <li>Confirm that you are the owner or authorized user of the phone number you are subscribing</li>
+          <li>Acknowledge that message frequency varies based on emergencies and community events</li>
+          <li>Understand that message and data rates may apply based on your mobile carrier plan</li>
+        </ul>
+
+        <h2>3. Opt-Out and Unsubscribe</h2>
+        <p>You may unsubscribe from GetAlert at any time by texting <strong>STOP</strong> (or CANCEL, END, QUIT, or UNSUBSCRIBE) to the phone number from which you receive alerts. Upon unsubscribing:</p>
+        <ul>
+          <li>You will receive a confirmation message</li>
+          <li>You will no longer receive alert messages</li>
+          <li>You may re-subscribe at any time by texting SUBSCRIBE</li>
+        </ul>
+
+        <h2>4. Help and Support</h2>
+        <p>For help, text <strong>HELP</strong> to the phone number from which you receive alerts, or contact us at <a href="mailto:support@getalert.co">support@getalert.co</a>.</p>
+
+        <h2>5. Message Frequency and Content</h2>
+        <p>Message frequency varies. You will receive messages when the subscribing organization issues alerts. This may range from no messages in a month to multiple messages in a single day during an active emergency. Alert content is determined by the subscribing organization and may include:</p>
+        <ul>
+          <li>Emergency notifications (wildfires, severe weather, evacuations)</li>
+          <li>Public safety notices (boil water advisories, road closures)</li>
+          <li>Community announcements (burn bans, utility maintenance)</li>
+        </ul>
+
+        <h2>6. Costs and Charges</h2>
+        <p>GetAlert does not charge subscribers to receive messages. However, standard message and data rates from your mobile carrier may apply. Contact your carrier for details about your messaging plan.</p>
+
+        <h2>7. Service Limitations</h2>
+        <p><strong>GetAlert is not a replacement for official emergency services.</strong> You acknowledge and agree that:</p>
+        <ul>
+          <li>GetAlert is a communication tool, not an emergency response service</li>
+          <li>GetAlert does not replace 911, official government alert systems (IPAWS, WEA), or emergency management agencies</li>
+          <li>Message delivery depends on mobile carrier networks and may be delayed or fail during network congestion, outages, or infrastructure failures</li>
+          <li>We do not guarantee delivery of any specific message</li>
+          <li>You should not rely solely on GetAlert for emergency information</li>
+          <li>The content and timing of alerts are determined by the subscribing organization, not by GetAlert</li>
+        </ul>
+
+        <h2>8. Accuracy of Information</h2>
+        <p>Alert content is provided by the subscribing organization. We do not independently verify the accuracy, completeness, or timeliness of alert information. The subscribing organization is solely responsible for the content of alerts sent through the Service.</p>
+
+        <h2>9. Acceptable Use</h2>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Subscribe phone numbers you do not own or are not authorized to use</li>
+          <li>Use the Service for any unlawful purpose</li>
+          <li>Attempt to disrupt, overload, or interfere with the Service</li>
+          <li>Impersonate any person or entity when communicating with the Service</li>
+        </ul>
+
+        <h2>10. Privacy</h2>
+        <p>Your use of GetAlert is also governed by our <a href="/privacy-policy">Privacy Policy</a>, which describes how we collect, use, and protect your information.</p>
+
+        <h2>11. Disclaimer of Warranties</h2>
+        <p>THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SERVICE WILL BE UNINTERRUPTED, ERROR-FREE, OR COMPLETELY SECURE.</p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, GETALERT AND RURAL CAPITAL, LLC SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, USE, OR GOODWILL, ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICE, WHETHER BASED ON WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY OTHER LEGAL THEORY, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+        <p>IN NO EVENT SHALL OUR TOTAL LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THE SERVICE EXCEED ONE HUNDRED DOLLARS ($100).</p>
+
+        <h2>13. Indemnification</h2>
+        <p>You agree to indemnify and hold harmless GetAlert, Rural Capital, LLC, and their officers, directors, employees, and agents from any claims, damages, losses, liabilities, and expenses (including reasonable attorneys' fees) arising out of or related to your use of the Service or violation of these Terms.</p>
+
+        <h2>14. Changes to Terms</h2>
+        <p>We may modify these Terms at any time. If we make material changes, we will notify subscribers via SMS and update the "Last updated" date. Your continued use of the Service after any changes indicates your acceptance of the modified Terms.</p>
+
+        <h2>15. Termination</h2>
+        <p>We may suspend or terminate your access to the Service at any time, with or without cause, with or without notice. You may terminate your use of the Service at any time by texting STOP.</p>
+
+        <h2>16. Governing Law</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of the State of Texas, without regard to its conflict of law provisions. Any disputes arising from these Terms or the Service shall be resolved in the state or federal courts located in Texas.</p>
+
+        <h2>17. Severability</h2>
+        <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in full force and effect.</p>
+
+        <h2>18. Entire Agreement</h2>
+        <p>These Terms, together with our Privacy Policy, constitute the entire agreement between you and GetAlert regarding the Service and supersede any prior agreements.</p>
+
+        <h2>19. Contact Information</h2>
+        <p>For questions about these Terms, please contact us:</p>
+        <ul>
+          <li><strong>Email:</strong> <a href="mailto:support@getalert.co">support@getalert.co</a></li>
+          <li><strong>Mail:</strong> GetAlert, Rural Capital LLC, [Address]</li>
+        </ul>
+
+        <h2>20. SMS Short Code/Phone Number Specific Terms</h2>
+        <p>The following terms apply specifically to our SMS messaging service:</p>
+        <ul>
+          <li><strong>Program Name:</strong> GetAlert Emergency Notifications</li>
+          <li><strong>Message Frequency:</strong> Varies based on emergencies and community events</li>
+          <li><strong>Message and Data Rates:</strong> May apply (contact your carrier)</li>
+          <li><strong>Opt-Out:</strong> Text STOP to cancel</li>
+          <li><strong>Help:</strong> Text HELP for assistance or email <a href="mailto:support@getalert.co">support@getalert.co</a></li>
+          <li><strong>Supported Carriers:</strong> Compatible with all major U.S. carriers including AT&T, Verizon, T-Mobile, Sprint, and others. Carrier fees may apply.</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="footer__copy">&copy; 2026 GetAlert. All rights reserved.</span>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
