@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Example SMS Opt-In Flyer - GetAlert</title>
+  <meta name="description" content="Example promotional flyer showing how communities advertise GetAlert SMS emergency alerts opt-in.">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://getalert.co/example-flyer">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-bg-elevated: #111827;
+      --color-bg-card: #1a2235;
+      --color-amber: #f59e0b;
+      --color-amber-bright: #fbbf24;
+      --color-amber-dim: #d97706;
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-dim: #64748b;
+      --color-text-on-amber: #0a0f1a;
+      --color-border: #1e293b;
+      --color-red: #ef4444;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --space-md: 1rem;
+      --space-lg: 1.5rem;
+      --space-xl: 2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 4rem;
+      --max-width: 900px;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --transition-fast: 150ms ease;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--color-text);
+      background-color: var(--color-bg);
+    }
+
+    a {
+      color: var(--color-amber);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    a:hover {
+      color: var(--color-amber-bright);
+    }
+
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) 0;
+      background: rgba(10, 15, 26, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 var(--color-border);
+    }
+
+    .nav__inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--color-text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav__logo-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .nav__back {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 var(--space-xl);
+    }
+
+    .content {
+      padding: calc(80px + var(--space-3xl)) 0 var(--space-3xl);
+    }
+
+    .content__header {
+      margin-bottom: var(--space-2xl);
+      text-align: center;
+    }
+
+    .content__title {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 400;
+      margin-bottom: var(--space-md);
+      letter-spacing: -0.02em;
+    }
+
+    .content__subtitle {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Flyer Container */
+    .flyer-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2xl);
+    }
+
+    .flyer {
+      background: #ffffff;
+      color: #1a1a1a;
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      max-width: 500px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      font-family: var(--font-body);
+    }
+
+    .flyer__header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid #f59e0b;
+    }
+
+    .flyer__org {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+
+    .flyer__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 400;
+      color: #1a1a1a;
+      line-height: 1.2;
+    }
+
+    .flyer__title span {
+      color: #d97706;
+    }
+
+    .flyer__cta {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem;
+      border-radius: var(--radius-md);
+      margin-bottom: 1.5rem;
+    }
+
+    .flyer__cta-label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      opacity: 0.9;
+    }
+
+    .flyer__cta-action {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .flyer__cta-action .keyword {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .flyer__alerts {
+      margin-bottom: 1.5rem;
+    }
+
+    .flyer__alerts-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      margin-bottom: 0.75rem;
+    }
+
+    .flyer__alerts-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem;
+    }
+
+    .flyer__alert-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+      color: #333;
+    }
+
+    .flyer__alert-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #fef3c7;
+      border-radius: 50%;
+      font-size: 0.75rem;
+    }
+
+    .flyer__legal {
+      background: #f8fafc;
+      padding: 1rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      color: #666;
+      line-height: 1.5;
+      margin-bottom: 1.5rem;
+    }
+
+    .flyer__divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin: 1.5rem 0;
+    }
+
+    .flyer__optional {
+      text-align: center;
+    }
+
+    .flyer__optional-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 0.75rem;
+    }
+
+    .flyer__optional-title {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.5rem;
+    }
+
+    .flyer__optional-text {
+      font-size: 0.8125rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .flyer__footer {
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      font-size: 0.6875rem;
+      color: #94a3b8;
+    }
+
+    .flyer__footer a {
+      color: #64748b;
+      text-decoration: underline;
+    }
+
+    /* Instructions */
+    .instructions {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-xl);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .instructions__title {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: var(--space-md);
+      color: var(--color-text);
+    }
+
+    .instructions__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .instructions__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+    }
+
+    .instructions__number {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--color-amber);
+      color: var(--color-text-on-amber);
+      font-size: 0.75rem;
+      font-weight: 700;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      padding: var(--space-xl) 0;
+      border-top: 1px solid var(--color-border);
+      text-align: center;
+      margin-top: var(--space-3xl);
+    }
+
+    .footer__copy {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    .footer__links {
+      margin-top: var(--space-md);
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      list-style: none;
+    }
+
+    .footer__links a {
+      font-size: 0.8125rem;
+      color: var(--color-text-dim);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 0 var(--space-lg);
+      }
+
+      .flyer {
+        padding: 1.5rem;
+      }
+
+      .flyer__alerts-list {
+        grid-template-columns: 1fr;
+      }
+
+      .flyer__cta-action {
+        font-size: 1.25rem;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .nav, .footer, .instructions, .content__header {
+        display: none;
+      }
+
+      .content {
+        padding: 0;
+      }
+
+      .flyer {
+        box-shadow: none;
+        max-width: 100%;
+        border: 1px solid #ccc;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="/" class="nav__logo">
+        <svg class="nav__logo-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M93.6,74.9L59.3,14.5c-4.1-7.2-14.5-7.2-18.6,0L6.4,74.9c-4.1,7.1,1.1,16,9.3,16h68.5C92.5,90.9,97.6,82.1,93.6,74.9z" fill="#f59e0b"/>
+          <path d="M50.1,28.9c3.2,0,4.8,2.9,4.8,8.8c0,3.2-0.4,7.6-1.3,13.3c-0.9,5.7-1.5,9.2-2.1,10.3c-0.4,0.8-0.8,1.2-1.4,1.2c-0.7,0-1.2-0.3-1.5-1c-0.5-0.9-1.2-4.1-2.1-9.6c-0.9-5.5-1.3-10.3-1.4-14.1C45.1,31.8,46.8,28.9,50.1,28.9z" fill="#f1f5f9"/>
+          <path d="M53.6,75.5c-1,1-2.2,1.5-3.6,1.5c-1.4,0-2.6-0.5-3.6-1.5c-1-1-1.5-2.2-1.5-3.6c0-1.4,0.5-2.6,1.5-3.6c1-1,2.2-1.5,3.6-1.5c1.3,0,2.5,0.5,3.6,1.6c1.1,1.1,1.6,2.3,1.6,3.6C55.2,73.3,54.6,74.5,53.6,75.5z" fill="#f1f5f9"/>
+        </svg>
+        GetAlert
+      </a>
+      <a href="/" class="nav__back">&larr; Back to Home</a>
+    </div>
+  </nav>
+
+  <main class="content">
+    <div class="container">
+      <header class="content__header">
+        <h1 class="content__title">Example SMS Opt-In Flyer</h1>
+        <p class="content__subtitle">This is an example of the promotional materials communities use to advertise GetAlert SMS alerts. Customize with your organization name and phone number.</p>
+      </header>
+
+      <div class="flyer-wrapper">
+
+        <!-- The Flyer -->
+        <div class="flyer">
+          <div class="flyer__header">
+            <div class="flyer__org">[Your Organization Name]</div>
+            <h2 class="flyer__title">Get <span>Emergency Alerts</span> on Your Phone</h2>
+          </div>
+
+          <div class="flyer__cta">
+            <div class="flyer__cta-label">Sign up for free text alerts:</div>
+            <div class="flyer__cta-action">Text <span class="keyword">SUBSCRIBE</span> to<br>(555) 123-4567</div>
+          </div>
+
+          <div class="flyer__alerts">
+            <div class="flyer__alerts-title">You'll receive alerts about:</div>
+            <div class="flyer__alerts-list">
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">🔥</span>
+                Wildfires & Evacuations
+              </div>
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">⛈️</span>
+                Severe Weather
+              </div>
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">💧</span>
+                Boil Water Notices
+              </div>
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">🚧</span>
+                Road Closures
+              </div>
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">⚡</span>
+                Power Outages
+              </div>
+              <div class="flyer__alert-item">
+                <span class="flyer__alert-icon">📢</span>
+                Community Updates
+              </div>
+            </div>
+          </div>
+
+          <div class="flyer__legal">
+            Message frequency varies based on emergencies and community events. Message and data rates may apply. Text <strong>STOP</strong> to unsubscribe at any time. Text <strong>HELP</strong> for assistance.
+          </div>
+
+          <div class="flyer__divider"></div>
+
+          <div class="flyer__optional">
+            <div class="flyer__optional-badge">SMS Alerts Are Optional</div>
+            <div class="flyer__optional-title">You can also access alerts without subscribing:</div>
+            <div class="flyer__optional-text">
+              <strong>Web:</strong> getalert.co/[your-community]<br>
+              <strong>Call:</strong> (555) 123-4567 to hear the latest alert
+            </div>
+          </div>
+
+          <div class="flyer__footer">
+            <span>Powered by GetAlert</span>
+            <a href="https://getalert.co/terms">Terms</a>
+            <a href="https://getalert.co/privacy-policy">Privacy Policy</a>
+          </div>
+        </div>
+
+        <!-- Customization Instructions -->
+        <div class="instructions">
+          <h3 class="instructions__title">How to customize this flyer for your community:</h3>
+          <ol class="instructions__list">
+            <li class="instructions__item">
+              <span class="instructions__number">1</span>
+              <span>Replace "[Your Organization Name]" with your organization (e.g., "Coke County Emergency Management")</span>
+            </li>
+            <li class="instructions__item">
+              <span class="instructions__number">2</span>
+              <span>Replace "(555) 123-4567" with your GetAlert phone number</span>
+            </li>
+            <li class="instructions__item">
+              <span class="instructions__number">3</span>
+              <span>Replace "[your-community]" with your community's GetAlert URL slug</span>
+            </li>
+            <li class="instructions__item">
+              <span class="instructions__number">4</span>
+              <span>Print and post at community centers, fire stations, libraries, and public buildings</span>
+            </li>
+            <li class="instructions__item">
+              <span class="instructions__number">5</span>
+              <span>Share digitally on your website, social media, and community newsletters</span>
+            </li>
+          </ol>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="footer__copy">&copy; 2026 GetAlert. All rights reserved.</span>
+      <ul class="footer__links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/privacy-policy">Privacy Policy</a></li>
+        <li><a href="/terms">Terms & Conditions</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
