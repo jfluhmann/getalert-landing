@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RuralEOC - The Emergency Operations Platform Built for Rural America</title>
-  <meta name="description" content="RuralEOC: Lightweight emergency operations center software for rural counties and small communities. Situational awareness, coordination, and upstream reporting — starting at $150/month.">
+  <meta name="description" content="RuralEOC: Lightweight emergency operations center software for rural counties and small communities. Situational awareness, coordination, and upstream reporting — starting at $99/month.">
   <meta name="keywords" content="rural EOC, emergency operations center, rural emergency management, lightweight EOC software, virtual EOC, rural county emergency management, FEMA lifelines, incident management, situational awareness, affordable EOC">
 
   <!-- Canonical URL -->
@@ -42,10 +42,10 @@
     "operatingSystem": "Web",
     "offers": {
       "@type": "Offer",
-      "price": "150",
+      "price": "99",
       "priceCurrency": "USD",
       "priceValidUntil": "2027-12-31",
-      "description": "Starting at $150/month"
+      "description": "Starting at $99/month"
     },
     "author": {
       "@type": "Organization",
@@ -164,6 +164,21 @@
     .hero__stats { display: flex; gap: var(--space-3xl); margin-top: var(--space-4xl); padding-top: var(--space-2xl); border-top: 1px solid var(--color-border); animation: fadeInUp 0.6s ease 0.4s both; }
     .hero__stat-value { font-family: var(--font-display); font-size: 2.25rem; color: var(--color-text); line-height: 1; margin-bottom: var(--space-xs); }
     .hero__stat-label { font-size: 0.8125rem; color: var(--color-text-dim); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 500; }
+
+    /* Info tooltip */
+    .hero__stat-row { display: flex; align-items: center; gap: 0.375rem; }
+    .info-trigger { position: relative; display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; border-radius: 50%; background: var(--color-accent-glow); border: 1px solid rgba(14, 165, 233, 0.25); cursor: help; flex-shrink: 0; transition: background var(--transition-fast), border-color var(--transition-fast); }
+    .info-trigger:hover { background: var(--color-accent-glow-strong); border-color: rgba(14, 165, 233, 0.4); }
+    .info-trigger svg { width: 11px; height: 11px; color: var(--color-accent); }
+    .info-tooltip { position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: 260px; padding: 0.75rem 1rem; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: var(--radius-sm); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity var(--transition-fast), visibility var(--transition-fast), transform var(--transition-fast); transform: translateX(-50%) translateY(4px); z-index: 50; }
+    .info-tooltip::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--color-border); }
+    .info-tooltip::before { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 5px solid transparent; border-top-color: var(--color-bg-card); z-index: 1; }
+    .info-trigger:hover .info-tooltip { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0); }
+    .info-tooltip__text { font-family: var(--font-body); font-size: 0.75rem; font-weight: 400; color: var(--color-text-secondary); line-height: 1.5; text-transform: none; letter-spacing: 0; }
+    .info-tooltip__source { display: block; margin-top: 0.375rem; font-family: var(--font-mono); font-size: 0.625rem; color: var(--color-accent); text-transform: none; letter-spacing: 0; }
+    .info-tooltip__source a { color: var(--color-accent); text-decoration: underline; text-decoration-color: rgba(14, 165, 233, 0.3); }
+    .info-tooltip__source a:hover { text-decoration-color: var(--color-accent); }
+    @media (max-width: 600px) { .info-tooltip { width: 220px; left: auto; right: -1rem; transform: translateY(4px); } .info-trigger:hover .info-tooltip { transform: translateY(0); } .info-tooltip::after, .info-tooltip::before { left: auto; right: 1.25rem; } }
 
     /* ============================================ BUTTONS ============================================ */
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--space-sm); padding: 0.875rem 1.75rem; font-family: var(--font-body); font-weight: 600; font-size: 0.9375rem; border: none; border-radius: var(--radius-sm); cursor: pointer; transition: all var(--transition-fast); text-decoration: none; line-height: 1; }
@@ -400,16 +415,38 @@
       </div>
       <div class="hero__stats">
         <div>
-          <div class="hero__stat-value">$150</div>
+          <div class="hero__stat-value">$99</div>
           <div class="hero__stat-label">Starting / month</div>
         </div>
         <div>
           <div class="hero__stat-value">43%</div>
-          <div class="hero__stat-label">Counties share EOC space</div>
+          <div class="hero__stat-label">
+            <span class="hero__stat-row">
+              Counties lack a dedicated EOC
+              <span class="info-trigger" aria-label="Source information" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 11V8"/><circle cx="8" cy="5.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+                <span class="info-tooltip" role="tooltip">
+                  <span class="info-tooltip__text">43% of county emergency management agencies share their EOC with other departments. Only 53% have a dedicated facility; 4% have no EOC at all.</span>
+                  <span class="info-tooltip__source"><a href="https://www.naco.org/sites/default/files/documents/Emergency%20Management%20in%20County%20Government_03.25.19.pdf" target="_blank" rel="noopener">NACo National Survey, 2019</a></span>
+                </span>
+              </span>
+            </span>
+          </div>
         </div>
         <div>
           <div class="hero__stat-value">7</div>
-          <div class="hero__stat-label">FEMA Lifelines tracked</div>
+          <div class="hero__stat-label">
+            <span class="hero__stat-row">
+              FEMA Lifelines tracked
+              <span class="info-trigger" aria-label="Source information" tabindex="0">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 11V8"/><circle cx="8" cy="5.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+                <span class="info-tooltip" role="tooltip">
+                  <span class="info-tooltip__text">Community Lifelines are the 7 essential services that enable continuous operation of critical government and business functions during an emergency.</span>
+                  <span class="info-tooltip__source"><a href="https://www.fema.gov/emergency-managers/practitioners/lifelines" target="_blank" rel="noopener">FEMA Community Lifelines</a></span>
+                </span>
+              </span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
@@ -565,7 +602,7 @@
             <span class="demo__mockup-dot"></span>
             <span class="demo__mockup-dot"></span>
             <span class="demo__mockup-dot"></span>
-            <span class="demo__mockup-url">ruraleoc.com/coke-county/status</span>
+            <span class="demo__mockup-url">getalert.co/tx/coke-county</span>
           </div>
           <div class="demo__header">
             <div class="demo__header-title">Coke County &mdash; Community Lifelines</div>
@@ -614,6 +651,10 @@
               <span class="lifeline__status lifeline__status--green">No incidents</span>
               <span class="lifeline__time">2:30 PM</span>
             </div>
+            <div style="padding: 0.625rem 1rem; border-top: 1px solid var(--color-border-subtle); display: flex; align-items: center; justify-content: center; gap: 0.375rem;">
+              <span style="font-family: var(--font-mono); font-size: 0.5625rem; color: var(--color-text-dim); text-transform: uppercase; letter-spacing: 0.08em;">Powered by</span>
+              <span style="font-family: var(--font-body); font-weight: 700; font-size: 0.6875rem;"><span style="color: var(--color-amber);">Get</span><span style="color: var(--color-text-dim);">Alert</span></span>
+            </div>
           </div>
         </div>
       </div>
@@ -643,7 +684,7 @@
               <td>$25,000+</td>
               <td>$5,000+</td>
               <td>$750&ndash;$80,000</td>
-              <td class="highlight-col">$1,800&ndash;$4,800</td>
+              <td class="highlight-col">$1,188&ndash;$2,400</td>
             </tr>
             <tr>
               <td class="row-label">Situational Awareness Dashboard</td>
@@ -721,7 +762,7 @@
           <div>
             <h3 class="audience__title">County Emergency Management</h3>
             <p class="audience__desc">Give your county judge a real-time common operating picture. Give your TDEM liaison auto-generated SitReps. Give your residents a single source of truth.</p>
-            <span class="audience__price">Starting at $200/mo</span>
+            <span class="audience__price">$99/mo</span>
           </div>
         </div>
         <div class="audience__item fade-in">
@@ -729,7 +770,7 @@
           <div>
             <h3 class="audience__title">Regional Coordinators &amp; COGs</h3>
             <p class="audience__desc">Roll out lightweight EOC capability across an entire district. Monitor Lifelines status for multiple counties from a single dashboard.</p>
-            <span class="audience__price">Multi-county pricing available</span>
+            <span class="audience__price">Volume discounts for multi-county</span>
           </div>
         </div>
         <div class="audience__item fade-in">
@@ -737,7 +778,7 @@
           <div>
             <h3 class="audience__title">Fire Districts &amp; First Responders</h3>
             <p class="audience__desc">Coordinate multi-agency wildfire response. Field reporting via SMS keeps the situation board current even when cell data is congested.</p>
-            <span class="audience__price">Starting at $150/mo</span>
+            <span class="audience__price">$99/mo</span>
           </div>
         </div>
         <div class="audience__item fade-in">
@@ -763,7 +804,7 @@
           <span class="bridge__logo-name"><span class="text-amber">Get</span>Alert</span>
         </div>
         <p class="bridge__text">
-          RuralEOC handles coordination. GetAlert handles resident communication. Together, they give your community a complete emergency management platform &mdash; from the EOC situation board to the SMS that wakes a resident at 3 AM. RuralEOC customers get GetAlert's multi-channel notification capabilities built right in.
+          RuralEOC is your coordination tool &mdash; the dashboard your team uses to track lifelines, manage field reports, and generate ICS forms. GetAlert is what your residents see &mdash; the public status page, the SMS alerts, the multi-channel notifications. Update a lifeline in RuralEOC, and it flows automatically to your community's GetAlert page. One system for your team, one for your public &mdash; connected seamlessly.
         </p>
       </div>
     </div>
@@ -775,7 +816,7 @@
       <div class="origin__content">
         <span class="section__label fade-in" style="justify-content: center;">Why We're Building This</span>
         <blockquote class="origin__quote fade-in">
-          Rural communities are underserved, not unsophisticated. They understand what they need. They lack the budget and tooling, not the knowledge.
+          Rural communities are underserved. They understand what they need, but often lack the budget and tooling.
         </blockquote>
         <p class="origin__body fade-in">
           RuralEOC was born from conversations with emergency managers at IAEM Region 6 who told us the same thing: the tools exist, but they cost $25,000 and require a team of IT staff. Meanwhile, 43% of counties share EOC space with other departments, and coordination during real emergencies falls back to phone calls and Facebook. We're building what those communities actually need &mdash; not a cheaper WebEOC, but a fundamentally different approach designed for how rural emergency management really works.
