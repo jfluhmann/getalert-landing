@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank You - RuralEOC</title>
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-bg: #0a0f1a;
+      --color-bg-card: #1a2235;
+      --color-accent: #0ea5e9;
+      --color-accent-bright: #38bdf8;
+      --color-accent-glow: rgba(14, 165, 233, 0.15);
+      --color-text: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-dim: #64748b;
+      --color-text-on-accent: #0a0f1a;
+      --color-border: #1e293b;
+      --color-green: #22c55e;
+      --color-amber: #f59e0b;
+      --font-display: 'Instrument Serif', Georgia, serif;
+      --font-body: 'DM Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 40%, rgba(14, 165, 233, 0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 30% at 30% 70%, rgba(34, 197, 94, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .success {
+      text-align: center;
+      max-width: 560px;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .success__icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.2);
+      border-radius: 50%;
+      animation: scaleIn 0.4s ease 0.15s both;
+    }
+
+    .success__icon svg {
+      width: 38px;
+      height: 38px;
+      color: var(--color-green);
+    }
+
+    .success__title {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .success__text {
+      color: var(--color-text-secondary);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+    }
+
+    .success__actions {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .success__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: var(--color-accent);
+      color: var(--color-text-on-accent);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .success__link:hover {
+      background: var(--color-accent-bright);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(14, 165, 233, 0.25);
+    }
+
+    .success__link--ghost {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+    }
+
+    .success__link--ghost:hover {
+      background: transparent;
+      border-color: var(--color-text-dim);
+      color: var(--color-text);
+      box-shadow: none;
+    }
+
+    .success__card {
+      margin-top: 3rem;
+      padding: 1.5rem 2rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      text-align: left;
+      animation: fadeIn 0.5s ease 0.3s both;
+    }
+
+    .success__card-title {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-accent);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .success__card-title::before {
+      content: '';
+      display: block;
+      width: 12px;
+      height: 1px;
+      background: var(--color-accent);
+    }
+
+    .success__card-text {
+      color: var(--color-text-dim);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .success__card-text strong {
+      color: var(--color-text-secondary);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 480px) {
+      .success__title { font-size: 2rem; }
+      .success__actions { flex-direction: column; }
+      .success__link { width: 100%; justify-content: center; }
+      .success__card { padding: 1.25rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="success">
+    <div class="success__icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
+    <h1 class="success__title">We heard you, loud and clear</h1>
+    <p class="success__text">
+      Thank you for your interest in RuralEOC. Your community's input is shaping what we build. We'll reach out within 48 hours to learn more about your needs and share what's coming next.
+    </p>
+    <div class="success__actions">
+      <a href="/rural-eoc/" class="success__link">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 8H3M7 4l-4 4 4 4"/></svg>
+        Back to RuralEOC
+      </a>
+      <a href="/" class="success__link success__link--ghost">
+        Learn about GetAlert
+      </a>
+    </div>
+    <div class="success__card">
+      <div class="success__card-title">What happens next</div>
+      <p class="success__card-text">
+        We're in early exploration, talking with emergency managers across rural Texas and beyond. Your response helps us prioritize which capabilities to build first. Expect a <strong>brief follow-up email</strong> within 48 hours &mdash; no sales pitch, just a conversation about what your community actually needs.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

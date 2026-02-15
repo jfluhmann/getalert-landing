@@ -40,4 +40,10 @@
     <lastmod>2026-02-05</lastmod>
     <priority>0.3</priority>
   </url>
+  <url>
+    <loc>https://getalert.co/rural-eoc</loc>
+    <lastmod>2026-02-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
