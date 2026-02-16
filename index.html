@@ -839,6 +839,195 @@
     }
 
     /* ============================================
+       AGGREGATION SECTION
+       ============================================ */
+    .aggregation__visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-3xl);
+    }
+
+    .aggregation__sources {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-md);
+      max-width: 700px;
+    }
+
+    .aggregation__source {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: 0.5rem 1rem;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 100px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      white-space: nowrap;
+      transition: border-color var(--transition-base), background var(--transition-base);
+    }
+
+    .aggregation__source:hover {
+      border-color: rgba(245, 158, 11, 0.3);
+      background: var(--color-bg-card-hover);
+    }
+
+    .aggregation__source-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .aggregation__source-dot--blue { background: var(--color-blue); }
+    .aggregation__source-dot--red { background: var(--color-red); }
+    .aggregation__source-dot--green { background: var(--color-green); }
+    .aggregation__source-dot--amber { background: var(--color-amber); }
+
+    .aggregation__arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      color: var(--color-text-dim);
+    }
+
+    .aggregation__arrow svg {
+      width: 24px;
+      height: 24px;
+      color: var(--color-amber);
+      animation: pulse-dot 2.5s ease-in-out infinite;
+    }
+
+    .aggregation__arrow-text {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--color-text-dim);
+    }
+
+    .aggregation__destination {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      padding: 0.875rem 1.75rem;
+      background: var(--color-amber-glow-strong);
+      border: 2px solid rgba(245, 158, 11, 0.3);
+      border-radius: var(--radius-md);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--color-amber);
+    }
+
+    .aggregation__destination svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .aggregation__bottom-text {
+      max-width: 560px;
+      text-align: center;
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+    }
+
+    .aggregation__bottom-text strong {
+      color: var(--color-text);
+    }
+
+    /* ============================================
+       RURALEOC BRIDGE
+       ============================================ */
+    .bridge {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-2xl) var(--space-3xl);
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bridge::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #0ea5e9, var(--color-amber));
+    }
+
+    .bridge__logos {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2xl);
+      margin-bottom: var(--space-xl);
+    }
+
+    .bridge__connector {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--color-text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .bridge__logo-name {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    .bridge__logo-name .text-teal { color: #0ea5e9; }
+    .bridge__logo-name .text-amber { color: var(--color-amber); }
+
+    .bridge__text {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.65;
+      max-width: 600px;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .bridge__link {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: #0ea5e9;
+      transition: color var(--transition-fast);
+    }
+
+    .bridge__link:hover {
+      color: #38bdf8;
+    }
+
+    .bridge__link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .bridge__logos {
+        flex-direction: column;
+        gap: var(--space-md);
+      }
+    }
+
+    /* ============================================
        LIVE DEMO MOCKUP
        ============================================ */
     .demo {
@@ -967,11 +1156,27 @@
       line-height: 1.55;
     }
 
+    .demo__alert-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+
+    .demo__alert-source {
+      font-family: var(--font-mono);
+      font-size: 0.625rem;
+      font-weight: 500;
+      color: var(--color-amber-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
     .demo__alert-time {
       font-family: var(--font-mono);
       font-size: 0.6875rem;
       color: var(--color-text-dim);
-      margin-top: var(--space-sm);
     }
 
     /* ============================================
@@ -1648,6 +1853,60 @@
   </section>
 
   <!-- ============================================
+       AGGREGATION
+       ============================================ -->
+  <section class="section" id="aggregation">
+    <div class="container">
+      <span class="section__label fade-in">One Subscription, Every Source</span>
+      <h2 class="section__title fade-in">Your community's alerts are scattered.<br>GetAlert brings them together.</h2>
+      <p class="section__subtitle fade-in">
+        Your county, your city, your school district, the National Weather Service &mdash; every alert source in one place. Residents subscribe once and get everything.
+      </p>
+      <div class="aggregation__visual fade-in">
+        <div class="aggregation__sources">
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--blue"></span>
+            National Weather Service
+          </span>
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--red"></span>
+            County Emergency Mgmt
+          </span>
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--green"></span>
+            City Government
+          </span>
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--amber"></span>
+            Volunteer Fire Dept
+          </span>
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--blue"></span>
+            School District
+          </span>
+          <span class="aggregation__source">
+            <span class="aggregation__source-dot aggregation__source-dot--green"></span>
+            Water / Utility District
+          </span>
+        </div>
+        <div class="aggregation__arrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+          <span class="aggregation__arrow-text">Aggregated into</span>
+        </div>
+        <div class="aggregation__destination">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M93.6,74.9L59.3,14.5c-4.1-7.2-14.5-7.2-18.6,0L6.4,74.9c-4.1,7.1,1.1,16,9.3,16h68.5C92.5,90.9,97.6,82.1,93.6,74.9z" fill="currentColor"/>
+          </svg>
+          One GetAlert page &amp; subscription
+        </div>
+      </div>
+      <p class="aggregation__bottom-text fade-in">
+        Other platforms can only unify organizations that use the same vendor. <strong>GetAlert aggregates regardless of what system each organization uses.</strong> One phone number. One web page. Every alert that matters to your community.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================
        LIVE DEMO MOCKUP
        ============================================ -->
   <section class="section" id="features">
@@ -1691,19 +1950,19 @@
               <div class="demo__alert-severity">Critical</div>
               <div class="demo__alert-title">Wildfire Evacuation &mdash; Zones A &amp; B</div>
               <div class="demo__alert-body">MANDATORY evacuation for Zones A and B. Fire spreading east toward FM 2134. Exit via Highway 87 North. Shelter open at High School gymnasium.</div>
-              <div class="demo__alert-time">Today at 3:45 PM</div>
+              <div class="demo__alert-meta"><span class="demo__alert-source">via County Emergency Mgmt</span><span class="demo__alert-time">Today at 3:45 PM</span></div>
             </div>
             <div class="demo__alert demo__alert--warning">
               <div class="demo__alert-severity">Warning</div>
-              <div class="demo__alert-title">Power Outage &mdash; North County</div>
-              <div class="demo__alert-body">Approximately 1,200 customers affected. Crews working to restore. Estimated restoration: 2-4 hours.</div>
-              <div class="demo__alert-time">Today at 2:15 PM</div>
+              <div class="demo__alert-title">High Wind Warning until 8 PM CDT</div>
+              <div class="demo__alert-body">Southwest winds 30-40 mph with gusts to 60 mph. Downed trees and power lines possible. Secure loose outdoor objects.</div>
+              <div class="demo__alert-meta"><span class="demo__alert-source">via National Weather Service</span><span class="demo__alert-time">Today at 2:15 PM</span></div>
             </div>
             <div class="demo__alert demo__alert--info">
               <div class="demo__alert-severity">Info</div>
-              <div class="demo__alert-title">Burn Ban in Effect</div>
+              <div class="demo__alert-title">Burn Ban in Effect &mdash; Coke County</div>
               <div class="demo__alert-body">Due to dry conditions, outdoor burning is prohibited until further notice. Report fires: 911</div>
-              <div class="demo__alert-time">Yesterday at 9:00 AM</div>
+              <div class="demo__alert-meta"><span class="demo__alert-source">via City of Robert Lee</span><span class="demo__alert-time">Yesterday at 9:00 AM</span></div>
             </div>
           </div>
         </div>
@@ -1763,6 +2022,13 @@
             </tr>
             <tr>
               <td class="row-label">Public Web Page</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="comparison__x">&mdash;</td>
+              <td class="highlight-col comparison__check">&#10003;</td>
+            </tr>
+            <tr>
+              <td class="row-label">Multi-Source Aggregation</td>
               <td class="comparison__x">&mdash;</td>
               <td class="comparison__x">&mdash;</td>
               <td class="comparison__x">&mdash;</td>
@@ -1900,6 +2166,29 @@
         <p class="origin__body fade-in">
           GetAlert was born during wildfires in rural Texas, when critical information was scattered across Facebook groups &mdash; and the residents who needed it most had no way to access it. We built what those communities needed: a simple, affordable system that reaches people regardless of their technology.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+       RURALEOC BRIDGE
+       ============================================ -->
+  <section class="section section--alt" id="rural-eoc">
+    <div class="container">
+      <span class="section__label fade-in" style="justify-content: center; display: flex;">Better Together</span>
+      <div class="bridge fade-in" style="margin-top: var(--space-xl);">
+        <div class="bridge__logos">
+          <span class="bridge__logo-name"><span class="text-amber">Get</span>Alert</span>
+          <span class="bridge__connector">+ pairs with +</span>
+          <span class="bridge__logo-name"><span class="text-teal">Rural</span>EOC</span>
+        </div>
+        <p class="bridge__text">
+          GetAlert is what your residents see &mdash; the public status page, the SMS alerts, the call-in line. RuralEOC is what your team uses during emergencies &mdash; situational awareness, coordination, and upstream reporting. Update a lifeline status in RuralEOC, and it flows automatically to your community's GetAlert page.
+        </p>
+        <a href="/rural-eoc" class="bridge__link">
+          Learn about RuralEOC
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
       </div>
     </div>
   </section>
