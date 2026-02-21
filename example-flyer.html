@@ -216,10 +216,20 @@
       letter-spacing: 0.02em;
     }
 
-    .flyer__cta-action .keyword {
+    .flyer__cta-pin {
+      margin-top: 0.75rem;
+      font-size: 1rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .flyer__cta-pin .keyword {
       background: rgba(255, 255, 255, 0.2);
-      padding: 0.125rem 0.5rem;
+      padding: 0.25rem 0.75rem;
       border-radius: 4px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
     }
 
     .flyer__alerts {
@@ -452,7 +462,7 @@
     <div class="container">
       <header class="content__header">
         <h1 class="content__title">Example SMS Opt-In Flyer</h1>
-        <p class="content__subtitle">This is an example of the promotional materials communities use to advertise GetAlert SMS alerts. Customize with your organization name and phone number.</p>
+        <p class="content__subtitle">This is an example of the promotional materials communities use to advertise GetAlert SMS alerts. Residents text their community's PIN to 1-844-321-ALRT (2578) to subscribe. Customize with your organization name and community PIN.</p>
       </header>
 
       <div class="flyer-wrapper">
@@ -466,7 +476,8 @@
 
           <div class="flyer__cta">
             <div class="flyer__cta-label">Sign up for free text alerts:</div>
-            <div class="flyer__cta-action">Text <span class="keyword">SUBSCRIBE</span> to<br>(555) 123-4567</div>
+            <div class="flyer__cta-action">Text your community PIN to<br>1-844-321-ALRT (2578)</div>
+            <div class="flyer__cta-pin">Your PIN: <span class="keyword">1234</span></div>
           </div>
 
           <div class="flyer__alerts">
@@ -509,8 +520,8 @@
             <div class="flyer__optional-badge">SMS Alerts Are Optional</div>
             <div class="flyer__optional-title">You can also access alerts without subscribing:</div>
             <div class="flyer__optional-text">
-              <strong>Web:</strong> getalert.co/[your-community]<br>
-              <strong>Call:</strong> (555) 123-4567 to hear the latest alert
+              <strong>Web:</strong> getalert.co/community/1234<br>
+              <strong>Call:</strong> 1-844-321-ALRT (2578) to hear the latest alert
             </div>
           </div>
 
@@ -531,18 +542,14 @@
             </li>
             <li class="instructions__item">
               <span class="instructions__number">2</span>
-              <span>Replace "(555) 123-4567" with your GetAlert phone number</span>
+              <span>Replace "1234" with your community's assigned PIN</span>
             </li>
             <li class="instructions__item">
               <span class="instructions__number">3</span>
-              <span>Replace "[your-community]" with your community's GetAlert URL slug</span>
-            </li>
-            <li class="instructions__item">
-              <span class="instructions__number">4</span>
               <span>Print and post at community centers, fire stations, libraries, and public buildings</span>
             </li>
             <li class="instructions__item">
-              <span class="instructions__number">5</span>
+              <span class="instructions__number">4</span>
               <span>Share digitally on your website, social media, and community newsletters</span>
             </li>
           </ol>
