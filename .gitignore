@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Netlify
+.netlify/
+
+# Env (if any local config sneaks in)
+.env
+.env.local
+
+# Logs
+*.log
