@@ -1,6 +1,20 @@
 [build]
   publish = "."
 
+# RuralEOC moved to its own domain (see jfluhmann/ruraleoc-landing).
+# Direct 301s, path-preserving, no chains. Deploy only after ruraleoc.com is live.
+[[redirects]]
+  from = "/rural-eoc"
+  to = "https://ruraleoc.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/rural-eoc/*"
+  to = "https://ruraleoc.com/:splat"
+  status = 301
+  force = true
+
 # Security headers
 [[headers]]
   for = "/*"
